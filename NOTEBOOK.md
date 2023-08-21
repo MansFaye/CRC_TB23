@@ -14,4 +14,16 @@ The gene-set variation analysis was conducted using the Molecular Signatures DB'
 
 ### 18/8 - XX/8: DGE, GSEA, ORA
 
+We ran the DGE both with and without the batch effect in the design. When extracting results, both the independent filtering and cook's distance cutoff parameters were set to true.    
+
+Without batch effect:   
+
+At alpha cutoff = 0.05, 25 genes were significantly DE between the TSM and TSS samples. For the two pairs involving the TMP samples, 0 genes were sig. DE. 
+Looking at both the PCA and GSVA results, the results for TMP are not too surprising (see overlap).
+
+With batch effect:  
+
+At alpha cutoff = 0.05, 8 genes were significantly DE between the TSM and TSS samples. The most significant ones are the same as for the first run. For the two pairs involving the TMP samples, 0 genes were sig. DE.
+
+*Note: When comparing samples from TSM and TSS, the majority of genes are filtered out due to low mean count.This is not the case for the other two comparisons. When looking at the summary, we can see that the mean count cutoff is systematically higher for that pair of conditions than for the others.* 
 
