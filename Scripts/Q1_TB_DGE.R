@@ -74,67 +74,45 @@ plotMA(res_SMMP, ylim=c(-3,3), main ="TMP vs TSM, shrunken", colSig="red2")
 plotMA(res_SSMP, ylim=c(-3,3), main ="TMP vs TSS, shrunken", colSig="red2")
 
 # Volcano plots
-pdf("../TB_epithelium/volcano_SMSS.pdf", width = 9)
+pdf("../TB_epithelium/Figures/volcano_SMSS.pdf", width = 8)
 EnhancedVolcano(res_SMSS_tbl,
                 lab = rownames(res_SMSS_tbl),
-                x = 'log2FoldChange',
-                y = 'pvalue',
-                title = "DGE in TB: TSS vs TSM (Base)",
-                subtitle = element_blank(),
-                pCutoff = 0.05,
-                pCutoffCol = 'padj',
+                x = 'log2FoldChange', y = 'pvalue',
+                title = "DGE in TB: TSS vs TSM (Base)", subtitle = element_blank(),
+                pCutoff = 0.05, pCutoffCol = 'padj',
                 FCcutoff = 0.58,
-                legendPosition = 'bottom',
-                legendLabSize = 10,
-                legendIconSize = 3.0,
-                drawConnectors = TRUE,
-                widthConnectors = 0.5,
+                legendPosition = 'bottom', legendLabSize = 10, legendIconSize = 3.0,
+                drawConnectors = TRUE, widthConnectors = 0.5,
                 max.overlaps = 15,
-                pointSize = 1,
-                labSize = 4)
+                pointSize = 1, labSize = 4)
 dev.off()
 
-pdf("../TB_epithelium/volcano_SMMP.pdf", width = 9)
-EnhancedVolcano(res_SMMP_tbl,
-                lab = rownames(res_SMMP_tbl),
-                x = 'log2FoldChange',
-                y = 'pvalue',
-                title = "DGE in TB: TMP vs TSM (Base)",
-                subtitle = element_blank(),
-                pCutoff = 0.05,
-                pCutoffCol = 'padj',
+pdf("../TB_epithelium/Figures/volcano_SMMP.pdf", width = 8)
+EnhancedVolcano(res_SMMP_tbl, lab = rownames(res_SMMP_tbl),
+                x = 'log2FoldChange', y = 'pvalue',
+                title = "DGE in TB: TMP vs TSM (Base)", subtitle = element_blank(),
+                pCutoff = 0.05, pCutoffCol = 'padj',
                 FCcutoff = 0.58,
-                legendPosition = 'bottom',
-                legendLabSize = 10,
-                legendIconSize = 3.0,
-                drawConnectors = TRUE,
-                widthConnectors = 0.5,
+                legendPosition = 'bottom', legendLabSize = 10, legendIconSize = 3.0,
+                drawConnectors = TRUE, widthConnectors = 0.5,
                 max.overlaps = 15,
-                pointSize = 1,
-                labSize = 4)
+                pointSize = 1, labSize = 4)
 dev.off()
 
-pdf("../TB_epithelium/volcano_SSMP.pdf", width = 9)
+pdf("../TB_epithelium/Figures/volcano_SSMP.pdf", width = 8)
 EnhancedVolcano(res_SSMP_tbl,
                 lab = rownames(res_SSMP_tbl),
-                x = 'log2FoldChange',
-                y = 'pvalue',
-                title = "DGE in TB: TMP vs TSS (Base)",
-                subtitle = element_blank(),
-                pCutoff = 0.05,
-                pCutoffCol = 'padj',
+                x = 'log2FoldChange', y = 'pvalue',
+                title = "DGE in TB: TMP vs TSS (Base)", subtitle = element_blank(),
+                pCutoff = 0.05, pCutoffCol = 'padj',
                 FCcutoff = 0.58,
-                legendPosition = 'bottom',
-                legendLabSize = 10,
-                legendIconSize = 3.0,
-                drawConnectors = TRUE,
-                widthConnectors = 0.5,
+                legendPosition = 'bottom', legendLabSize = 10, legendIconSize = 3.0,
+                drawConnectors = TRUE, widthConnectors = 0.5,
                 max.overlaps = 15,
                 pointSize = 1,
                 labSize = 4)
 dev.off()
 
-# Sig Genes Boxplots
 
 
 
@@ -220,31 +198,31 @@ gsea_SMMP <- GSEA(log2fc_SMMP, TERM2GENE = hallmark_gs)
 gsea_SSMP <- GSEA(log2fc_SSMP, TERM2GENE = hallmark_gs)
 
 # Visualize GSEA results
-dot_SMSS <- dotplot(gsea_SMSS, showCategory=15, split=".sign", font.size=8, size = NULL, label_format = 90) + 
+dot_SMSS <- dotplot(gsea_SMSS, showCategory=15, split=".sign", font.size=9, size = NULL, label_format = 90) + 
   ggtitle("Hallmark, TSS vs TSM (Base)") +
   facet_grid(~.sign) + 
   theme(plot.title.position = "plot")
 # Note: GeneRatio = # of core (contributed to the enrichment score) DE genes in pathway / total count of genes in pathway
 
-dot_SMMP <- dotplot(gsea_SMMP, showCategory=15, split=".sign", font.size=8, size = NULL, label_format = 90) + 
+dot_SMMP <- dotplot(gsea_SMMP, showCategory=15, split=".sign", font.size=9, size = NULL, label_format = 90) + 
   ggtitle("Hallmark, TMP vs TSM (Base)") +
   facet_grid(~.sign) + 
   theme(plot.title.position = "plot")
 
-dot_SSMP <- dotplot(gsea_SSMP, showCategory=15, split=".sign", font.size=8, size = NULL, label_format = 90) + 
+dot_SSMP <- dotplot(gsea_SSMP, showCategory=15, split=".sign", font.size=9, size = NULL, label_format = 90) + 
   ggtitle("Hallmark, TMP vs TSS (Base)") +
   facet_grid(~.sign) + 
   theme(plot.title.position = "plot")
 
-pdf("../TB_epithelium/gsea_SMSS_dot.pdf", width = 8)
+pdf("../TB_epithelium/Figures/gsea_SMSS_dot.pdf", width = 9)
 dot_SMSS
 dev.off()
 
-pdf("../TB_epithelium/gsea_SMMP_dot.pdf", width = 8)
+pdf("../TB_epithelium/Figures/gsea_SMMP_dot.pdf", width = 9)
 dot_SMMP
 dev.off()
 
-pdf("../TB_epithelium/gsea_SSMP_dot.pdf", width = 8)
+pdf("../TB_epithelium/Figures/gsea_SSMP_dot.pdf", width = 9)
 dot_SSMP
 dev.off()
 
@@ -264,9 +242,268 @@ gene <- sig_SMSS$ENTREZID
 # Run ORA and make upset plot
 ora_SMSS <- enricher(gene, TERM2GENE=hallmark_gs)
 
-pdf("../TB_epithelium/ora_SMSS.pdf", width = 10)
-upsetplot(ora_SMSS) + labs(title = "TSS vs TSM") + theme(plot.title.position = "plot")
+pdf("../TB_epithelium/Figures/ora_SMSS.pdf", width = 10)
+upsetplot(ora_SMSS) + labs(title = "Hallmark, TSS vs TSM") + theme(plot.title.position = "plot")
 dev.off()
+
+# Save ORA, GSEA and Sig. DE tables
+write.table(ora_SMSS@result, file="../TB_epithelium/ora_SMSS.tsv", sep="\t", quote=F, col.names=NA)
+
+write.table(gsea_SMSS@result, file="../TB_epithelium/gsea_SMSS.tsv", sep="\t", quote=F, col.names=NA)
+write.table(gsea_SMMP@result, file="../TB_epithelium/gsea_SMMP.tsv", sep="\t", quote=F, col.names=NA)
+write.table(gsea_SSMP@result, file="../TB_epithelium/gsea_SSMP.tsv", sep="\t", quote=F, col.names=NA)
+
+write.table(sig_SMSS, file="../TB_epithelium/sigDE.tsv", sep="\t", quote=F, col.names=NA)
+
+
+###### Reactome pathways #######
+library(ReactomePA)
+
+#Run GSEA, same params as above 
+gsea_SMSS2 <- gsePathway(log2fc_SMSS, organism = "human", pvalueCutoff = 0.05, pAdjustMethod = "BH")
+gsea_SMMP2 <- gsePathway(log2fc_SMMP, organism = "human", pvalueCutoff = 0.05, pAdjustMethod = "BH")
+gsea_SSMP2 <- gsePathway(log2fc_SSMP, organism = "human", pvalueCutoff = 0.05, pAdjustMethod = "BH")
+
+write.table(gsea_SSMP2@result, file="../TB_epithelium/gsea_SSMP2.tsv", sep="\t", quote=F, col.names=NA)
+write.table(gsea_SMMP2@result, file="../TB_epithelium/gsea_SMMP2.tsv", sep="\t", quote=F, col.names=NA)
+write.table(gsea_SMSS2@result, file="../TB_epithelium/gsea_SMSS2.tsv", sep="\t", quote=F, col.names=NA)
+
+# Visualize GSEA results
+pdf("../TB_epithelium/Figures/gsea_SMSS2_dot.pdf", width = 10)
+dotplot(gsea_SMSS2, showCategory=20, split=".sign", font.size=9, size = NULL, label_format = 90) + 
+  ggtitle("Reactome, TSS vs TSM (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+pdf("../TB_epithelium/Figures/gsea_SMMP2_dot.pdf", width = 10)
+dotplot(gsea_SMMP2, showCategory=20, split=".sign", font.size=9, size = NULL, label_format = 90) + 
+  ggtitle("Reactome, TMP vs TSM (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+pdf("../TB_epithelium/Figures/gsea_SSMP2_dot.pdf", width = 10)
+dotplot(gsea_SSMP2, showCategory=20, split=".sign", font.size=9, size = NULL, label_format = 90) + 
+  ggtitle("Reactome, TMP vs TSS (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+
+#Run ORA and make upset plot
+ora_SMSS2 <- enrichPathway(gene=gene, organism = "human",pvalueCutoff = 0.05, pAdjustMethod = "BH", readable=TRUE)
+
+pdf("../TB_epithelium/Figures/ora_SMSS2.pdf", width = 10)
+upsetplot(ora_SMSS2) + labs(title = "Reactome, TSS vs TSM") + theme(plot.title.position = "plot")
+dev.off()
+
+#### Reactome GSEA with pathway subsets ####
+reactome_gs <- msigdbr::msigdbr(
+  species = "Homo sapiens",
+  category = "C2", subcategory = "CP:REACTOME") %>% dplyr::select(gs_name, entrez_gene)
+
+#Define restricted sets of pathways
+reactome_EMT <- reactome_gs %>%   dplyr::filter(gs_name %in% c("REACTOME_EXTRACELLULAR_MATRIX_ORGANIZATION", "REACTOME_ECM_PROTEOGLYCANS",
+                                                            "REACTOME_COLLAGEN_FORMATION", "REACTOME_DEGRADATION_OF_THE_EXTRACELLULAR_MATRIX", 
+                                                            "REACTOME_NON_INTEGRIN_MEMBRANE_ECM_INTERACTIONS", "REACTOME_INTEGRIN_CELL_SURFACE_INTERACTIONS",
+                                                            "REACTOME_COLLAGEN_BIOSYNTHESIS_AND_MODIFYING_ENZYMES",
+                                                            "REACTOME_ASSEMBLY_OF_COLLAGEN_FIBRILS_AND_OTHER_MULTIMERIC_STRUCTURES", 
+                                                            "REACTOME_SYNDECAN_INTERACTIONS", "REACTOME_COLLAGEN_DEGRADATION"))
+
+# Run GSEAs
+
+gsea_SMMP_EMT <- GSEA(log2fc_SMMP, TERM2GENE = reactome_EMT, pvalueCutoff = 1)
+
+gsea_SSMP_EMT <- GSEA(log2fc_SSMP, TERM2GENE = reactome_EMT, pvalueCutoff = 0.3)
+
+# Visualize GSEA results
+pdf("../TB_epithelium/Figures/gsea_SMMP_EMT_dot.pdf", width = 10)
+dotplot(gsea_SMMP_EMT, showCategory=20, split=".sign", font.size=9, size = NULL, label_format = 90) + 
+  ggtitle("Reactome/Hallmark EMT overlap, TMP vs TSM (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+pdf("../TB_epithelium/Figures/gsea_SSMP_EMT_dot.pdf", width = 10)
+dotplot(gsea_SSMP_EMT, showCategory=20, split=".sign", font.size=9, size = NULL, label_format = 90) + 
+  ggtitle("Reactome/Hallmark EMT overlap, TMP vs TSS (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+
+###### Gene Ontology pathways #######
+# Run GSEA
+gsea_SMSS3 <- gseGO(geneList = log2fc_SMSS, OrgDb = org.Hs.eg.db, ont = "BP", minGSSize = 10)
+gsea_SMMP3 <- gseGO(geneList = log2fc_SMMP, OrgDb = org.Hs.eg.db, ont = "BP", minGSSize = 10)
+gsea_SSMP3 <- gseGO(geneList = log2fc_SSMP, OrgDb = org.Hs.eg.db, ont = "BP", minGSSize = 10)
+
+#Visualize GSEA results
+pdf("../TB_epithelium/Figures/gsea_SMSS3_dot.pdf", width = 9)
+dotplot(gsea_SMSS3, showCategory=25, split=".sign", font.size=8, size = NULL, label_format = 90) + 
+  ggtitle("GO Biol. Processes, TSS vs TSM (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+pdf("../TB_epithelium/Figures/gsea_SMMP4_dot.pdf", width = 9)
+dotplot(gsea_SMMP3, showCategory=25, split=".sign", font.size=8, size = NULL, label_format = 90) + 
+  ggtitle("GO Biol. Processes, TMP vs TSM (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+pdf("../TB_epithelium/Figures/gsea_SSMP4_dot.pdf", width = 9)
+dotplot(gsea_SSMP3, showCategory=25, split=".sign", font.size=8, size = NULL, label_format = 90) + 
+  ggtitle("GO Biol. Processes, TMP vs TSS (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+
+# Run ORA and make upset plot
+ora_SMSS3 <- enrichGO(gene          = gene,
+                      OrgDb         = org.Hs.eg.db,
+                      ont           = "BP",
+                      pAdjustMethod = "BH",
+                      pvalueCutoff  = 0.05,
+                      qvalueCutoff  = 0.2,
+                      readable      = TRUE)
+
+pdf("../TB_epithelium/Figures/ora_SMSS3.pdf", width = 12)
+upsetplot(ora_SMSS3, n=12) + labs(title = "GO Biol. Processes, TSS vs TSM") + theme(plot.title.position = "plot")
+dev.off()
+
+############ Presentation/Report figures ###########
+# Format data
+normalized_counts <- counts(dds, normalized=TRUE)
+normalized_counts <- normalized_counts %>% 
+  data.frame() %>%
+  rownames_to_column(var="gene") %>% 
+  as_tibble()
+
+group_df <- data_annot[, c(1, 5)] %>% rownames_to_column(var = 'Sample')
+group_df <- group_df[, c(1, 3)]
+
+normalized_counts <- normalized_counts %>%
+  gather(colnames(normalized_counts)[2:27], key = "Sample", value = "counts")
+
+normalized_counts['subgroup.a'] <- group_df$subgroup.a # add metadata
+
+
+ggplot(normalized_counts[normalized_counts$gene == 'RHOU',], aes(x=gene, y=counts, fill = subgroup.a)) +
+  geom_boxplot() + geom_dotplot(binaxis='y', stackdir='center', position=position_dodge(1)) +
+  labs(title = 'Normalized counts ', x = 'Region', fill = 'Region')
+
+
+
+####### DGE without safeTME genes ######
+library(SpatialDecon)
+library(GeomxTools)
+
+# Filter safeTME-linked genes from the profile matrix
+data("safeTME")
+data_noTME <- data_raw %>% rownames_to_column(var = 'gene') %>% 
+  dplyr::filter(!(gene %in% rownames(safeTME))) %>% column_to_rownames(var = 'gene')
+
+# Run DEseq2
+all(colnames(data_noTME) %in% rownames(data_annot))
+all(colnames(data_noTME) == rownames(data_annot)) # check that row and colnames align
+
+dds3 <- DESeqDataSetFromMatrix(countData = data_noTME, colData = data_annot, design = design1)
+dds3 <- DESeq(dds3)
+
+# Extract results for each pairwise comparison
+contrast_SMSS <- c("subgroup.a", "TSS", "TSM") # TSM is base
+
+res_SMSS3_unshrunken <- results(dds3, contrast=contrast_SMSS, alpha = 0.05, independentFiltering=T, cooksCutoff = T) # filtering always on
+res_SMSS3 <- lfcShrink(dds3, contrast=contrast_SMSS, res=res_SMSS3_unshrunken, type = "normal") # Shrink Log2 fold-change
+res_SMSS3_tbl <- res_SMSS3 %>% data.frame()
+
+contrast_SMMP <- c("subgroup.a", "TMP", "TSM") # TSM is base
+
+res_SMMP3 <- results(dds3, contrast=contrast_SMMP, alpha = 0.05, independentFiltering=T, cooksCutoff = T)
+res_SMMP3 <- lfcShrink(dds3, contrast=contrast_SMMP, res=res_SMMP3, type = "normal") 
+res_SMMP3_tbl <- res_SMMP3 %>% data.frame()
+
+contrast_SSMP <- c("subgroup.a", "TMP", "TSS") # TSS is base
+
+res_SSMP3 <- results(dds3, contrast=contrast_SSMP, alpha = 0.05, independentFiltering=T, cooksCutoff = T)
+res_SSMP3 <- lfcShrink(dds3, contrast=contrast_SSMP, res=res_SSMP3, type = "normal") 
+res_SSMP3_tbl <- res_SSMP3 %>% data.frame()
+
+summary(res_SMSS3)
+summary(res_SMMP3)
+summary(res_SSMP3)
+
+#GSEA
+# Shift gene names to SYMBOL column
+res_SMSS3_gsea <- res_SMSS3_tbl %>% rownames_to_column(var="SYMBOL")
+res_SMMP3_gsea <- res_SMMP3_tbl %>% rownames_to_column(var="SYMBOL")
+res_SSMP3_gsea <-res_SSMP3_tbl %>% rownames_to_column(var="SYMBOL")
+
+# Map SYMBOL name to the Entrez IDs
+symbol2enz <- AnnotationDbi::select(org.Hs.eg.db,
+                                    key=res_SMSS3_gsea$SYMBOL, 
+                                    columns=("ENTREZID"), # desired format
+                                    keytype="SYMBOL")  
+
+res_SMSS3_gsea <- dplyr::inner_join(res_SMSS3_gsea, symbol2enz, by = "SYMBOL")
+res_SMMP3_gsea <- dplyr::inner_join(res_SMMP3_gsea, symbol2enz, by = "SYMBOL")
+res_SSMP3_gsea <- dplyr::inner_join(res_SSMP3_gsea, symbol2enz, by = "SYMBOL")
+
+# Remove the unmapped genes, and only keep log2FC and ID columns
+res_SMSS3_gsea <- res_SMSS3_gsea[!is.na(res_SMSS3_gsea$ENTREZID), ] %>% dplyr::select(ENTREZID, log2FoldChange) 
+res_SMMP3_gsea <- res_SMMP3_gsea[!is.na(res_SMMP3_gsea$ENTREZID), ] %>% dplyr::select(ENTREZID, log2FoldChange)
+res_SSMP3_gsea <- res_SSMP3_gsea[!is.na(res_SSMP3_gsea$ENTREZID), ] %>% dplyr::select(ENTREZID, log2FoldChange)
+
+# Check duplicates
+sum(duplicated(res_SMSS3_gsea$ENTREZID))
+
+
+# Rank according to Log2FC
+res_SMSS3_gsea <- res_SMSS3_gsea[order(-res_SMSS3_gsea$log2FoldChange), ] 
+log2fc_SMSS3 <- res_SMSS3_gsea$log2FoldChange
+names(log2fc_SMSS3) <- res_SMSS3_gsea[, 1]
+
+res_SMMP3_gsea <- res_SMMP3_gsea[order(-res_SMMP3_gsea$log2FoldChange), ] 
+log2fc_SMMP3 <- res_SMMP3_gsea$log2FoldChange
+names(log2fc_SMMP3) <- res_SMMP3_gsea[, 1]
+
+res_SSMP3_gsea <- res_SSMP3_gsea[order(-res_SSMP3_gsea$log2FoldChange), ] 
+log2fc_SSMP3 <- res_SSMP3_gsea$log2FoldChange
+names(log2fc_SSMP3) <- res_SSMP3_gsea[, 1]
+
+#Run GSEA on reactome
+
+gsea_SMSS3 <- gsePathway(log2fc_SMSS3, organism = "human", pvalueCutoff = 0.05, pAdjustMethod = "BH")
+gsea_SMMP3 <- gsePathway(log2fc_SMMP3, organism = "human", pvalueCutoff = 0.05, pAdjustMethod = "BH")
+gsea_SSMP3 <- gsePathway(log2fc_SSMP3, organism = "human", pvalueCutoff = 0.05, pAdjustMethod = "BH")
+
+# Visualize GSEA results
+pdf("../TB_epithelium/Figures/gsea_SMSS_noTME_dot.pdf", width = 10)
+dotplot(gsea_SMSS3, showCategory=20, split=".sign", font.size=9, size = NULL, label_format = 90) + 
+  ggtitle("Reactome (no TME), TSS vs TSM (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+pdf("../TB_epithelium/Figures/gsea_SMMP_noTME_dot.pdf", width = 10)
+dotplot(gsea_SMMP3, showCategory=20, split=".sign", font.size=9, size = NULL, label_format = 90) + 
+  ggtitle("Reactome (no TME), TMP vs TSM (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+pdf("../TB_epithelium/Figures/gsea_SSMP_noTME_dot.pdf", width = 10)
+dotplot(gsea_SSMP3, showCategory=20, split=".sign", font.size=9, size = NULL, label_format = 90) + 
+  ggtitle("Reactome (no TME), TMP vs TSS (Base)") +
+  facet_grid(~.sign) + 
+  theme(plot.title.position = "plot")
+dev.off()
+
+
 
 
 

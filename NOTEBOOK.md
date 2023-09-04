@@ -35,3 +35,22 @@ Log2FC was used to rank the genes, and the GSEA was conducted using the `GSEA` f
 
 The ORA was only ran on the TSS/TSM pair, as it is the only one that had differentially expressed genes. We used the `enricher` function from the `clusterProfiler` package. Results can be viewed in an upset plot.
 
+
+### 23/8 - 25/8: GSEA, ORA with Reactome/GO pathways
+The Reactome GSEAs were run with the gsePathway function from the reactomePA package, and the GO GSEA with clusterProfiler's gseGO function. The GO terms used were from the Biological Processes category. The same list of ranked genes was used to run all GSEAs, and the parameters were identical.
+
+### Building custom profile matrices
+The custom profile matrices were built from publically available crc single cell dataset compiled by Pelka & al. for the 'immune hubs' paper https://doi.org/10.1016/j.cell.2021.08.003. Cells were discarded when less than 200 genes were detected. For each "Midway" cell type cluster where more than 250 cells were available, 250 were randomly selected to build the cell profile matrix (We looked at standardized variance when 500 or 1000 cells per type were selected, and observed no notable change in variance). Total of n = 5000 cells.  As the Pelka dataset included "gene programs" on top of genes, we excluded them. The 2000 most variable genes were then selected, down from 43000. The profile matrices were built from these reduced matrices, once for the top-level cell types, and once for the midway. 
+## Section 2: Cellular deconvolution of TBs' TME 
+### 23/8: Prepare and run deconvolution
+The raw reads were first normalized in the same way as for step 1. The expected background matrix was obtained using the `derive_GeoMx_background()` function, with a probe pool of 1 for all genes and the unique negative probe name `NegProbe-WTX`. The deconvolution was run with the `spatialdecon()` function and not `runspatialdecon()`, as our data was not contained in an S4 object like NanostringGeomxSet.
+
+### 24/8 - 25/8: Visualize Deconvolution
+
+We generated a stacked barplot of cell abundance proportions for each tissue region, as well as boxplots of cell proportions in the three regions for each cell type. The boxplots include the p-value from t and Wilcoxon tests for the three pairs, as well as ANOVAs/Kruskal-Wallis for the overall set. We built a function to perform the data manipulation, testing and plotting for the boxplots, which is used to loop over each celltype.
+
+
+
+
+
+

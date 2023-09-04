@@ -44,11 +44,11 @@ write.table(normalized_counts, file="../TB_epithelium/normalized_counts.tsv", se
 rld <- rlog(dds, blind=TRUE)
 
 # Plot the PCA
-pdf("../TB_epithelium/pca_region.pdf")
+pdf("../TB_epithelium/Figures/pca_region.pdf")
 plotPCA(rld, intgroup="subgroup.a", ntop = 1000) + labs(color = "region")
 dev.off()
 
-pdf("../TB_epithelium/pca_slide.pdf")
+pdf("../TB_epithelium/Figures/pca_slide.pdf")
 plotPCA(rld, intgroup="Slide", ntop = 1000) + labs(color = "Slide")
 dev.off()
 
@@ -60,10 +60,13 @@ rld_cor <- cor(rld_mat)
 
 # Plot the heatmap
 heat.colors <- RColorBrewer::brewer.pal(6, "Blues")
+group_colors <- list(region = c('#F8766D', '#00ba38','#83b0fc'))
+names(group_colors$region) <- c('TMP', 'TSM', 'TSS')
 
-pdf("../TB_epithelium/counts_heatmap.pdf", width = 8)
+pdf("../TB_epithelium/Figures/counts_heatmap.pdf", width = 8)
 pheatmap(rld_cor, 
   annotation_col = data.frame(region=data_annot$subgroup.a, row.names = rownames(data_annot)),
+  annotation_colors = group_colors,
   fontsize = 9,
   fontsize_row = 6,
   show_colnames = F,
@@ -78,7 +81,7 @@ reads_df <- data_annot[, c(1, 5, 12, 19, 21)]
 reads_df[, 1] <- as.character(reads_df[, 1])
 colnames(reads_df)[5] <- "percent_aligned"
 
-pdf("../TB_epithelium/read_counts.pdf")
+pdf("../TB_epithelium/Figures/read_counts.pdf")
 ggplot(reads_df, aes(x=...1, y=RawReads, fill=percent_aligned)) +
   geom_col() + labs( x = "Sample", y = "# of reads sequences", fill = "% aligned") +
   facet_wrap( ~ subgroup.a, strip.position = "bottom", scales = "free_x")
@@ -161,7 +164,7 @@ pathway_heatmap <- pheatmap(gsva_results,
   legend_breaks = c(-0.6, -0.4, -0.2, 0, 0.2, 0.4, max(gsva_results))
 )
 
-pdf("../TB_epithelium/gsva_heatmap.pdf", width = 10)
+pdf("../TB_epithelium/Figures/gsva_heatmap.pdf", width = 10)
 pathway_heatmap
 dev.off()
 
