@@ -12,12 +12,10 @@ library(ggpubr)
 library(car)
 library(ggsignif)
 
-# Load counts and metadata
-
+# Load counts, profile matrix and metadata
 data_annot <- read_csv(file = "../TB_TME/data_annot_tb_tme.csv")
 data_raw <- read_csv(file = "../TB_TME/data_raw_tb_tme.csv", col_select = 2:39)
-prof_mtx <- read_csv(file = "../Master_files/custom_crc_mid_profileMatrix.csv")
-
+prof_mtx <- read_csv(file = "../Master_files/custom_crc_top_profileMatrix.csv")
 
 data_annot$subgroup.a <- as.factor(data_annot$subgroup.a)
 data_annot <- data_annot %>% column_to_rownames(var="SegmentDisplayName")
@@ -64,12 +62,6 @@ res <- spatialdecon(
 )
 
 # Visualize results
-## Heatmap
-pheatmap(t(res$beta), 
-         annotation_row = data.frame(region=data_annot$subgroup.a, row.names = rownames(data_annot)),
-         col = inferno(10),
-         show_rownames = F,
-         )
 ## reshape proportion data to long format
 prop_df <- t(res$prop_of_nontumor)
 prop_df <- data.frame(prop_df) %>% rownames_to_column(var = 'Sample') %>% 
@@ -129,7 +121,7 @@ PlotCellType <- function(celltype){
     geom_boxplot() + geom_dotplot(binaxis='y', stackdir='center', position=position_dodge(1)) +
     labs(title = paste0('Proportion of ', celltype), x = 'Region', fill = 'Region')
   
-  pdf(paste0("../TB_TME/", celltype,"_nonp.pdf"), width = 8)  
+  pdf(paste0("../TB_TME/top_boxplots/", celltype,"_nonp.pdf"), width = 8)  
   try(print(p_nonp + stat_compare_means(method = "kruskal.test", label.x.npc = 'left', label.y = 0) +
     stat_compare_means(method = "wilcox.test", comparisons = comparisons#, label = 'p.signif'
     ))
@@ -140,7 +132,7 @@ PlotCellType <- function(celltype){
     geom_boxplot() + geom_dotplot(binaxis='y', stackdir='center', position=position_dodge(1)) +
     labs(title = paste0('Proportion of ', celltype), x = 'Region', fill = 'Region')
   
-  pdf(paste0("../TB_TME/", celltype,"_param.pdf"), width = 8)
+  pdf(paste0("../TB_TME/top_boxplots/", celltype,"_param.pdf"), width = 8)
   try(print(p + stat_compare_means(method = "anova", label.x.npc = 'left', label.y = 0) +
     stat_compare_means(method = 't.test', comparisons = comparisons, label = 'p.adj'
     ))

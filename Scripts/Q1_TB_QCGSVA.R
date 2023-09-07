@@ -168,7 +168,6 @@ pdf("../TB_epithelium/Figures/gsva_heatmap.pdf", width = 10)
 pathway_heatmap
 dev.off()
 
-# For paper/presentation version of heatmap: limit gene sets to those of interest
 
 
 
