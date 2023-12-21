@@ -4,7 +4,7 @@
 # As the single cell dataset from Pelka & al. is extremely large, we recommend running this on 
 # an HPC cluster or a cloud instance. R used ~35 GB of RAM to load the entire count matrix 
   
-
+# Load libraries
 library(tidyverse)
 library(SpatialDecon)
 library(Seurat)
