@@ -13,7 +13,10 @@ Two matrices are available in `./Master_files`: the "top" matrix groups together
 
 ### DGE, GSEA and Deconvolution
 #### R environment/dependencies
+All R packages/dependencies can be installed at once using the `renv` lockfile in `./Scripts`. `renv` allows us to build and share environment files in a similar way to `conda`. Once renv is installed and your R project is initiated, run `renv::restore()` to load the environment, making sure that `renv.lock` is in the project directory. 
 
+Note: This was built in R version 4.2.2 and although renv tracks the R version, it cannot change/update it. You might have to manually update some packages if your R version is different.
+ 
 #### R scripts
 Quality control of the data processing results is done using script [0](./Scripts/0_DSPQC_FILTERING.R). The data exploration steps (PCA, GSVA) are covered in script [1](./Scripts/1_TB_QCGSVA.R). Details on the differential gene expression, GSEA and ORA can be found in script [2](./Scripts/2A_TB_DGE.R). The spatial deconvolution is in script [3](./Scripts/3_TME_DCV.R).
 
