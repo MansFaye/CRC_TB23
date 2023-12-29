@@ -8,7 +8,7 @@ The data processing steps were handled by Nanostring's `GeoMx NGS pipeline v2.3.
 <img src="./Master_files/Workflow_Fig.png" alt="drawing" width="650"/>
 
 ### Profile matrices
-We built custom cell profile matrices from colorectal cancer single-cell data for the deconvolution tasks. The data is freely accessible from Pelka & al.'s [article](https://www.cell.com/cell/fulltext/S0092-8674(20)30870-9) "Coordinated Cellular Neighborhoods Orchestrate Antitumoral Immunity at the Colorectal Cancer Invasive Front".
+We built custom cell profile matrices from colorectal cancer single-cell data for the deconvolution tasks. The data is freely accessible from Pelka & al.'s [article](https://www.cell.com/cell/fulltext/S0092-8674(21)00945-4) "Spatially organized multicellular immune hubs in human colorectal cancer".
 Two matrices are available in `./Master_files`: the "top" matrix groups together similar cell types, and the "mid" categories are a bit more detailed. Short descriptions for the cell type names are available [here](./Master_files/name_mapping.xlsx).
 
 ### DGE, GSEA and Deconvolution
