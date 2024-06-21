@@ -2,7 +2,7 @@
 ###### Building a custom profile matrix for CRC #######
 #######################################################
 # As the single cell dataset from Pelka & al. is extremely large, we recommend running this on 
-# an HPC cluster or a cloud instance. R used ~35 GB of RAM to load the entire count matrix 
+# an HPC cluster or a cloud instance. R struggles with managing memory when loading the entire count matrix 
   
 # Load libraries
 library(tidyverse)
